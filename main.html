@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Final Amount</title>
+    <link rel="stylesheet" href="/bootstrap.css">
+    <link rel="stylesheet" href="design.css">
+</head>
+<body>
+    <header class="bg-warning  text-black mb-4">
+        <div class="container forSpace">
+            <h1>Final Details:</h1>
+        </div>
+    </header>
+    <div class="container">
+         <form target="_blank" onsubmit="printDetails(event)" id="my-form">
+            <div class="row red">
+                <label for="itemValue">Select Item:</label>
+                <select name="itemDetails" id="itemValue">
+                    <option value="phone" >Iphone</option>
+                    <option value="tablet">Ipad</option>
+                    <option value="laptop">MacBook</option>
+                    <option value="earphone">EarBuds</option>
+                    <option value="tracker">AirTag</option>
+
+                </select>
+            </div>
+            <div class="row blue">
+                <label for="priceValue">Price:</label>
+                <input type="text" name="priceDetails" id="priceValue">
+            </div>
+            <div class="row green">
+                <label for="quantityValue">No of Items:</label>
+                <input type="range" id="quantityValue" name="quantityDetail" min="1" max="10" value="1">
+                <p>Value: <span id="demo"></span></p>
+              <small><b>Note - </b>Single user only can only buy 10 items at a time.<br>
+                Also, every user will get 50% off the tax on buying 5 items or more of the same category.</small>
+            </div>
+            <div class="row">
+                <button>
+                    <span class="text">Submit</span>
+                  </button>
+            </div>
+         </form>
+         <div class="row yellow" id="toDisplay"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
