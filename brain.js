@@ -1,141 +1,72 @@
-function printDetails(event){
-  event.preventDefault();
-  let department = (event.target.departmentValue.value);
-  let salaryRange = (event.target.salaryRangetValue.value);
+async function getDetails (event){
+    event.preventDefault();
+    let price = event.target.priceDetail.value;
+    let dish = event.target.dishDetail.value;
+    let quantity = event.target.quantityDetail.value;
+    let table = event.target.tableDetail.value;
 
-  let newObj = {
-      department,
-      salaryRange
-  }
-  console.log(newObj);
-
-  showOnPage(newObj,salaryRange)
+    let objForValue = {
+        price,
+        dish,
+        quantity,
+        table
+    }
+    // console.log(objForValue);
+  
+    try{
+        let response = await axios.post('https://crudcrud.com/api/556d33aa9eb64c19bca5a198670bd4d8/tableOrder', objForValue)
+        showOnScreen(response.data)
+        console.log(response)
+    } catch (error) {
+        console.log(error)
+    }
 }
 
-function showOnPage(newObj,salaryRange){
-  // console.log(salaryRange);
-  
-  let toShowTax = () => {
-    if(salaryRange==='0'){
-      toShow = 0;
+
+window.addEventListener('DOMContentLoaded', async () => {
+   try{
+        let resolve = await axios.get('https://crudcrud.com/api/556d33aa9eb64c19bca5a198670bd4d8/tableOrder') 
+            // console.log(resolve.data);
+            for(var i=0; i<resolve.data.length; i++){
+                showOnScreen(resolve.data[i]);
+            }
+   } catch (reject) {
+    console.log(reject)
+   }
+   
+});
+
+    function showOnScreen(objForValue){
+    let parent = '';
+    if(objForValue.table === 'First'){
+    parent = document.getElementById('displayOne');
     }
-    else if(salaryRange==='5'){
-      toShow = 5;
+    if(objForValue.table === 'Second'){
+    parent = document.getElementById('displayTwo');
+    } 
+    if(objForValue.table === 'Third'){
+    parent = document.getElementById('displayThree');
     }
-    else if(salaryRange==='10'){
-        toShow = 10;
-      }
-      else if(salaryRange==='15'){
-        toShow = 15;
-      }
-      else if(salaryRange==='20'){
-        toShow = 20;
-      }
-      else if(salaryRange==='30'){
-        toShow = 30;
-      }
-    return toShow;
-  }
-  toShowTax();
-console.log('Tax to be dedcuted on your income is',toShow+'%');
 
+    let child = document.createElement('li');
+    child.textContent = 'Price: ' + objForValue.price + ' Dish: ' + objForValue.dish + ' Quantity: ' + objForValue.quantity;
+    child.style.color = 'rgb(255, 255,255)';
+    child.style.fontWeight = 'bolder';
 
+    let btnDel = document.createElement('button');
+    btnDel.className = 'btn btn-danger btn-sm ms-2 mb-2'
+    btnDel.textContent = 'Delete Order';
+    child.appendChild(btnDel);
+    parent.appendChild(child);
 
-let display = document.getElementById('toDisplay');
-let newElement = document.createElement('div');
-newElement.className = 'slab mt-2 mb-2';
-newElement.textContent = 'Tax to be dedcuted on your income is '+ toShow +'%'
-display.appendChild(newElement);
-let newButton = document.createElement('button');
-newButton.className = 'btn btn-warning mb-2';
-newButton.textContent = 'Check Other Details';
-display.appendChild(newButton);
-  
-newButton.onclick = () =>{
-
-  let attribute = () =>{
-    if(toShow===0){
-      messeagePop = 'Type your salary here less then 3 LPA...';
+    btnDel.addEventListener("click", deleteItem);
+    async function deleteItem() {
+        try{
+           let resolve = await axios.delete(`https://crudcrud.com/api/556d33aa9eb64c19bca5a198670bd4d8/tableOrder/${objForValue._id}`)
+           console.log('Element deleted')
+           parent.removeChild(child);
+        } catch (reject) {
+            console.log('Can not delete element');
+        }
     }
-    else if(toShow===5){
-      messeagePop = 'Type your salary here in between 3 to 6 LPA...';
-    }
-    else if(toShow===10){
-      messeagePop = 'Type your salary here in between 6 to 9 LPA...';
-    }
-    else if(toShow===15){
-      messeagePop = 'Type your salary here in between 9 to 12 LPA...';
-    }
-    else if(toShow===20){
-      messeagePop = 'Type your salary here in between 12 to 15 LPA...';
-    }
-    else if(toShow===30){
-      messeagePop = 'Type your salary here above then 15 LPA...';
-    }
-  }
-  attribute();
-
-  let valueDisplay = document.createElement('input');
-  valueDisplay.setAttribute = ('type', 'text');
-  valueDisplay.placeholder = messeagePop;
-  valueDisplay.className= 'type-text mt-2 mb-2';
-  valueDisplay.id = 'id-one'
-  let otherButton = document.createElement('button');
-  otherButton.className = 'btn btn-warning btn-sm mt-2 mb-2';
-  otherButton.textContent = 'Submit';
-  display.appendChild(valueDisplay);
-  display.appendChild(otherButton);
-
-  otherButton.onclick = () => {
-      let exactSalary = document.getElementById('id-one').value;
-      // console.log(exactSalary);
-      
-      let amountToBeDedcuted = () => {
-          // console.log('Test',toShow);
-          if(toShow===0){
-              amount = 0;
-              salaryLeft = exactSalary - amount;
-          }
-          else if(toShow===5){
-              amount = (exactSalary * toShow)/100 ;
-              salaryLeft = exactSalary - amount;
-          }
-          else if(toShow===10){
-              amount =  (exactSalary * toShow)/100 ;
-              salaryLeft = exactSalary - amount;
-          }
-          else if(toShow===15){
-              amount = (exactSalary * toShow)/100;
-              salaryLeft = exactSalary - amount;
-          }
-          else if(toShow===20){
-              amount = (exactSalary * toShow)/100;
-              salaryLeft = exactSalary - amount;
-          }
-          else if(toShow===30){
-              amount = (exactSalary * toShow)/100;
-              salaryLeft = exactSalary - amount;
-          }
-          return amount;
-
-      }   
-      amountToBeDedcuted();
-
-      let newDiv = document.createElement('div');
-      newDiv.textContent = 'Amount deducted on your salary is ' + amount;
-      newDiv.className = 'mt-2 mb-2';
-      newDiv.style.border = '2px solid red';
-      display.appendChild(newDiv);
-      
-      let otherDiv = document.createElement('div');
-      otherDiv.textContent = 'Final salary after deduction is ' + salaryLeft;
-      otherDiv.className = 'mt-2 mb-2'
-      otherDiv.style.border = '2px solid green';
-      display.appendChild(otherDiv);
-      
-      console.log('Amount',amount);
-      console.log('salary',salaryLeft);
-
-  }
-}
 }

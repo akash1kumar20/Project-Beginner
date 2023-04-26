@@ -1,16 +1,18 @@
-.container{
+h2{
     text-align: center;
-    border: 5px solid black;
-    width: 60%;
 }
-body{
-    background-color: rgb(33, 190, 218);
-    color: white
+.black{
+    border: 3px solid black;
 }
-label{
+.red{
+    border: 1px solid red;
+}
+.blue{
+    border: 1px solid blue;
+}
+.green{
+    border: 1px solid green;
+}
+.lightBlack{
     border: 1px solid black;
-}
-.white{
-    background-color: white;
-    color: black;
 }
