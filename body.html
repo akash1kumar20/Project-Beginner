@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" >
+    <title>Income Tax</title>
+    <link rel="stylesheet" href="/bootstrap.css">
+    <link rel="stylesheet" href="beauty.css">
+    
+</head>
+
+<body>
+    
+   <header class="bg-danger mb-3">
+    <div class="container">
+        
+        <h1>Calculate Your Salary</h1>
+    </div>
+   </header> 
+   <div class="container">
+    <form id="my-form" target="_blank" onsubmit="printDetails(event)">
+        <div class="row">
+            <label for="departmentDetail">Select Your Sector:</label>
+            <select id="departmentDetail" name="departmentValue">
+            <option value="Goverment">Goverment</option>
+            <option value="Private">Private</option>
+            <option value="Business">Business</option>
+            <option value="Farmer">Farmer</option>
+            <option value="Retired">Retired</option>
+            </select>
+        </div>
+        <div class="row mt-3 mb-3">
+            <label for="salaryrangeDetail">Select Your Salary Range:</label>
+            <select id="salaryrangeDetail" name="salaryRangetValue">
+                <option value=0>Below 3 Lakh</option>
+                <option value=5>3 Lakh - 6 Lakh</option>
+                <option value=10>6 Lakh - 9 Lakh</option>
+                <option value=15>9 Lakh - 12 Lakh </option>
+                <option value=20>12 Lakh - 15 Lakh</option>
+                <option value=30>Above 15 Lakh</option>
+                </select>
+        </div>
+        <div class="row size">
+            <input type="submit" value="Check Your Slab" class="btn btn-dark" id="buttonSubmit">
+        </div>
+    </form>
+    <div class="row white" id="toDisplay"></div>
+   </div>
+   <script src="brain.js"></script>
+</body>
+</html>
