@@ -47,18 +47,22 @@ button {
 
  body{
     background-color:darkgreen;
+    font-size: 20px;
    }
    .red{
     background-color: red;
     margin-bottom: 0.5cm;
     text-align: center;
     color: white;
+    
    }
    .blue{
-    background-color: rgb(38, 22, 144);
+    background-color:skyblue;
     margin-bottom: 0.5cm;
     text-align: center;
-    color: white;
+    color: black;
+    
+    
    }
    .green{
     background-color:gray;
@@ -67,16 +71,23 @@ button {
     color: white;
    }
    .yellow{
-    background-color: goldenrod;
+    background-color: whitesmoke;
     margin-bottom: 0.5cm;
     text-align: center;
     color: white;
+    font-weight: bold;
    }
    .container{
     border: 5px solid white;
     width: 60%;
+    height: 60%;
    }
    .forSpace{
     text-align: center;
     border: 0px;
+   }
+   .forValue{
+    text-align: left;
+    background-color:white;
+    
    }

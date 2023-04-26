@@ -1,19 +1,19 @@
 function printDetails(event){
     event.preventDefault();
     let item = event.target.itemDetails.value;
-    let range = event.target.priceDetails.value;
+    // let range = event.target.priceDetails.value;
    let quantity = event.target.quantityDetail.value;
 
    let obj = {
     item,
-    range,
+    // range,
     quantity
    }
    let objConvert = JSON.stringify(obj);
    localStorage.setItem(item,objConvert);
 
    forDisplay(obj);
-   finalAmount(range,quantity);
+   finalAmount(item,quantity);
 }
 
 function forDisplay(obj){
@@ -21,11 +21,12 @@ function forDisplay(obj){
     let newElement = document.createElement('div');
     newElement.className = 'mt-4';
     newElement.style.color = 'black';
-    newElement.textContent = "Your purchase = " + "ITEM_"+obj.item+ '__' + "PRICE_"+obj.range + '__' + "QUANTITY_"+obj.quantity;
+    newElement.textContent = "Your purchase = " + "ITEM_"+obj.item+ '__' + "QUANTITY_"+obj.quantity;
     
     let delButton = document.createElement('button');
-    delButton.className = 'btn btn-sm ms-2 delete';
-    delButton.textContent = 'Edit Item';
+    delButton.className = 'btn btn-sm btn-dark ms-2 delete';
+    delButton.textContent = 'Remove item';
+    delButton.style.fontWeight = 'bolder';
     newElement.appendChild(delButton);
     displayArea.appendChild(newElement);
 
@@ -33,26 +34,59 @@ function forDisplay(obj){
         localStorage.removeItem(obj.item);
         displayArea.removeChild(newElement);
         document.getElementById('itemValue').value = obj.item;
-        document.getElementById('priceValue').value = obj.range;
+        // document.getElementById('priceValue').value = obj.range;
         document.getElementById('quantityValue').value = obj.quantity;
     }
     
 }
 
-function finalAmount (range,quantity) {
-    console.log('Price =' , range);
+function finalAmount (item,quantity) {
+
+  let pop = document.getElementById('popPrice');
+  let range  = document.createElement('div');
+  range.id = 'priceValue';
+  range.textContent = 'Price:'
+ 
+ 
+  let priceOF = () => {
+    if(item==='phone'){
+      priceOFItem = 80000;
+    }
+    else if(item==='laptop'){
+      priceOFItem = 115000;
+    }
+    else if(item==='tablet'){
+      priceOFItem = 100000;
+    }
+    else if(item==='earphone'){
+      priceOFItem = 25000;
+    }
+    else if(item==='tracker'){
+      priceOFItem = 5000;
+    }
+    return priceOFItem;
+
+  }
+  priceOF();
+
+  let range1  = document.createElement('div');
+  range1.className = 'forValue'
+  range1.textContent = 'MRP ' + priceOFItem + ' ₹';
+  range.appendChild(range1);
+  pop.appendChild(range);
+ 
+    console.log('Price =' , priceOFItem);
     console.log('Quantity = ',quantity);
    
-    
     let tax = () => {
-      if(range>=100 && range<=150){
-        taxPay = 10;
+      if(priceOFItem >= 5000 && priceOFItem <= 30000){
+        taxPay = 30;
       }
-      else if(range>=150 && range<=500){
+      else if(priceOFItem >= 30000 && priceOFItem <= 85000){
         taxPay = 20;
       }
-     else if(range>=500 && range<=1250){
-        taxPay = 30;
+     else if(priceOFItem >= 100000 && priceOFItem<= 125000){
+        taxPay = 10;
      }
       return taxPay;
     }
@@ -62,8 +96,18 @@ function finalAmount (range,quantity) {
     let finalTaxPay = (quantity>=5)? taxPay/2 : taxPay;
     console.log('Discount on Tax = ',finalTaxPay); 
     
+    alert ((function(){ 
+      if (quantity<5)
+       {
+         return "Add more items to avail 50% discount on tax";
+    }
+      else 
+      {
+        return "Item Added in cart" };
+    })());
+    
     let afterTaxPrice = () => {
-     afterTax = (range * finalTaxPay)/100;
+     afterTax = (priceOFItem * finalTaxPay)/100;
     }
     afterTaxPrice();
     console.log('Tax after discount = ' ,afterTax+'%');
@@ -72,15 +116,15 @@ function finalAmount (range,quantity) {
     console.log('Tax amount for', quantity, ' item is = ' , priceForAll );
     
     let finalprice = () => {
-     final = parseInt(priceForAll) + parseInt(range*quantity);
+     final = parseInt(priceForAll) + parseInt(priceOFItem*quantity);
      //this is the only way to add numbers here, otherwise it will print value together
      //example if try to print 80 + 100 it will give 80100    
     }
-    finalprice(priceForAll,range)
+    finalprice(priceForAll,priceOFItem)
     console.log('final amount to pay = ',final);
   
     let obj = {
-    Price: range,
+    Price: priceOFItem,
     Quantity: quantity,
     TaxPercentage: taxPay,
     DiscountonTax: finalTaxPay,
@@ -90,10 +134,10 @@ function finalAmount (range,quantity) {
   }
     console.log(obj);
 
-    displayDetails(obj)  
+    displayDetails(obj,pop,range)  
 }
 
-function displayDetails(obj){
+function displayDetails(obj,pop,range){
     let displayArea = document.getElementById('toDisplay');
    
     let newElement1 = document.createElement('div');
@@ -147,8 +191,8 @@ function displayDetails(obj){
     displayArea.appendChild(newElement7);
     
     let editButton = document.createElement('button');
-    editButton.className = 'btn btn-sm mt-3 mb-3 ms-3';
-    
+    editButton.className = 'btn btn-sm btn-dark mt-3 mb-3 ms-3';
+    editButton.style.fontWeight = 'bolder';    
     editButton.setAttribute = ('type','reset');
     editButton.textContent = 'Delete Item';
    newElement7.appendChild(editButton);
@@ -162,6 +206,7 @@ function displayDetails(obj){
         displayArea.removeChild(newElement6);
         displayArea.removeChild(newElement7);
         displayArea.removeChild(newElement8);
+        pop.removeChild(range);
        
     }
     
