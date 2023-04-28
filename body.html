@@ -3,60 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Book</title>
-    <link rel="stylesheet" href="bootstrap.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" >
+    <title>Income Tax</title>
+    <link rel="stylesheet" href="/bootstrap.css">
     <link rel="stylesheet" href="beauty.css">
+    
 </head>
+
 <body>
-    <header class="bg-warning text-white bg-text mb-3 p-3">
-        <div class="container">
-            <h2>Order Summary:</h2>
-        </div>
-    </header>
-    <div class="container">
-        <form target="_blank" onsubmit="getDetails(event)">
-            <div class="row lightBlack">
-                <div class="col-md">
-                    <label for="priceValue" class="form-lable">Enter Price:</label>
-                    <input type="number" min="100" max="1000" id="priceValue" name="priceDetail" value="100" class="form-text me-3" required>
-
-                    <label for="dishValue" class="form-label">Choose Dish:</label>
-                    <input type="text" class="form-text me-3" id="dishValue" name="dishDetail" placeholder='Enter Dish Name' required>
-
-                    <label for="quantityValue" class="form-lable">Select Quantity:</label>
-                    <input type="number" min="1" max="5" id="quantityValue" name="quantityDetail" value="1" class="form-text me-3" required>
-
-                    <label for="tableValue" class="form-lable">Select Table:</label>
-                    <select id="tableValue" name="tableDetail" class="me-3" required>
-                        <option value="one" id="tableValueOne">Table 1</option>
-                        <option value="two">Table 2</option>
-                        <option value="three">Table 3</option>
-                    </select>
-                    <input type="submit" value="Confirm Order" class="btn btn-success btn-sm">
-
-
-                
-                </div>
-            </div>
-        </form>
-        <div class="container mt-4 p-3">
-            <h3><u>Orders:</u></h3>
-            <div class="row red mb-3 p-2" id="displayOne">
-                <b>Table 1 </b> 
-            </div>
-            <div class="row blue mb-3 p-2" id="displayTwo">
-                <b>Table 2 </b> 
-            </div>
-            <div class="row green mb-3 p-2" id="displayThree">
-                <b>Table 3 </b> 
-            </div>
-        </div>
+    
+   <header class="bg-danger mb-3">
+    <div class="container" id="forContainer">
+        
+        <h1>Calculate Your Salary</h1>
     </div>
+   </header> 
+   <div class="container">
+    <form id="my-form" target="_blank" onsubmit="printDetails(event)">
+        <div class="row">
+            <label for="departmentDetail">Select Your Sector:</label>
+            <select id="departmentDetail" name="departmentValue" required>
+            <option value="" selected disabled hidden>Select Your Department</option>
+            <option value="Goverment">Goverment</option>
+            <option value="Private">Private</option>
+            <option value="Business">Business</option>
+            <option value="Farming">Farmer</option>
+            <option value="Retired">Retired</option>
+            </select>
+        </div>
+        <div class="row mt-3 mb-3">
+            <label for="salaryrangeDetail">Select Your Salary Range:</label>
+                <select id="salaryrangeDetail" name="salaryRangeValue" required onclick="myFunction()">
+                    <option value="" selected disabled hidden>Select Your Salary</option>
+                    <option value=0>Below 3 Lakh</option>
+                    <option value=5>3 Lakh - 6 Lakh</option>
+                    <option value=10>6 Lakh - 9 Lakh</option>
+                    <option value=15>9 Lakh - 12 Lakh </option>
+                    <option value=20>12 Lakh - 15 Lakh</option>
+                    <option value=30>Above 15 Lakh</option>
+                    </select>
+        </div>
+        <div class="row mt-3 mb-3 justify-content-center" id="toDisplay"></div>
+        <div class="row justify-content-center" id="buttonCollection">
+            <div class="col-md-2">
+                <input type="submit" value="Confirm" class="btn btn-success btn-block" id="buttonConfirm">
+            </div>
+            <div class="col-md-2">
+                <input type="reset" value="Reset" class="btn btn-danger btn-block" id="buttonReset">
+            </div>  
+        </div>
+    </form>
 
-
-
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="brain.js"></script>
+    <div class="row mt-3 mb-3"> 
+     <div class="col-md" id="toDisplay2"></div>
+    </div>
+    <div id="toDisplay3">
+      <form target="_blank" onsubmit="finalStep(event)">
+        <div class="row justify-content-center">
+                <label for="textDetails">Type your salary for more details</label>
+                <input type="text" id="textDetails" name="textValue">
+            <div class="col-md-4">
+                <input type="submit" value="Calculate Salary" class="btn btn-secondary btn-sm mt-3" id="calculator">
+            </div>
+        </div>
+      </form>
+      <div id="toDisplay4"></div>
+    </div>
+    <div id="toDisplay5">
+        <small>Tax deducation on salary upto 7 LPA can be zero <a href="#">contact our expert</a> for more details.</small>
+      </div>
+   </div>
+  
+   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+   <script src="brain.js"></script>
 </body>
 </html>
