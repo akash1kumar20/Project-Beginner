@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Page</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h2 id="logo" class="mt-2">The Lalit</h2>
+                </div>
+                <div class="col-md-8">
+                    <ul id="menu" class="float-md-end">
+                        <li><a href="">Home</a></li>
+                        <li><a href="">Price</a></li>
+                        <li><a href="">Availability</a></li>
+                        <li><a href="">Summary</a></li>
+                        <li><a href="">Update</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="banner" class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="banner-title">
+                    <h2>New Delhi Branch</h2>
+                    <p class="ban">We care at Lalit</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="order" class="section">
+        <div class="container" >
+            <h2 id="order-heading">Place Order:</h2>
+            <form target="_blank" onsubmit="getDetails(event)">
+                <div class="row lightBlack">
+                    <div class="col-md">
+                        <label for="priceValue" class="form-lable">Enter Price:</label>
+                        <input type="number" min="100" max="1000" id="priceValue" name="priceDetail" value="100" class="form-text me-3" required>
+    
+                        <label for="dishValue" class="form-label">Choose Dish:</label>
+                        <input type="text" class="form-text me-3" id="dishValue" name="dishDetail" placeholder='Enter Dish Name' required>
+    
+                        <label for="quantityValue" class="form-lable">Select Quantity:</label>
+                        <input type="number" min="1" id="quantityValue" name="quantityDetail" value="1" class="form-text me-3" required>
+    
+                        <label for="tableValue" class="form-lable">Select Table:</label>
+                        <select id="tableValue" name="tableDetail" class="me-3" required>
+                            <option value="First">Table 1</option>
+                            <option value="Second">Table 2</option>
+                            <option value="Third">Table 3</option>
+                        </select>
+                        <input type="submit" value="Confirm Order" class="btn btn-success btn-sm">                      
+                    </div>
+                </div>
+            </form>
+            <div class="col-md-12" id="offer">
+                <small>Today's offer: Flat 10% discount on minimum spend of ₹5000</small>
+            </div>
+        </div>
+    </div>
+    <div id="table" class="section">
+        <div class="container mt-4 p-3">
+            <h2 id="table-heading">Orders:</h2>
+            <div class="row red mb-3 p-2 justify-content-center" id="displayOne">
+                <div class="col-md-12">
+                    <b>Table 1 </b> 
+                </div>            
+            </div>
+            <div class="row blue mb-3 p-2 justify-content-center" id="displayTwo">
+                <div class="col-md-12">
+                    <b>Table 2 </b> 
+                </div>
+            </div>
+            <div class="row green mb-3 p-2 justify-content-center" id="displayThree">
+                <div class="col-md-12">
+                    <b>Table 3 </b> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="billGenerator">
+        <div class="row" >
+            <div class="col-md-12 ms-4 mb-2" id="warning">
+                <small><u><b>Note - </b>Please select table before generating bill</u></small>
+             </div>
+            <div class="col-md-4 text-center">
+                <label for='tableBill'>Select Table</label>
+                <select name="tableSel" id="tableBill" class="mt-1 mb-1">
+                    <option value="" disabled selected hidden>Please Select Table</option>
+                    <option value="First">First</option>
+                    <option value="Second">Second</option>
+                    <option value="Third">Third</option>
+                </select>    
+            </div>
+            <div class="col-md-4 text-center">
+                <button type="submit" class="btn btn-primary btn-sm p-1" id="finalCall">Click To Generate Bill</button>
+            </div>
+            <div class="col-md-4 text-center">
+                <button type="submit" class="btn btn-secondary btn-sm" id="anotherBill">Generate Another Bill</button>
+            </div>
+        </div>
+        <div class="row" id="displayBill">
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+.section{
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+#header{
+    color: white;
+    background: rgb(203, 42, 42);
+}
+#menu{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+#menu li{
+    display: inline-block;
+}
+#menu li a{
+    text-decoration:none;
+    color: white;
+    padding: 15px 10px;
+    display: block;
+    
+}
+#menu li a:hover{
+    
+    background: rgb(133, 5, 5);
+}
+#banner{
+    background: url('nick-karvounis-Ciqxn7FE4vE-unsplash.jpg') no-repeat 0 0;
+    background-size: cover;
+    
+}
+.banner-title{
+    padding-top: 6rem;
+}
+.banner-title h2{
+    background: rgba(255,255,255,0.5);
+    color: rgb(154, 26, 26);
+    display: inline-block;
+    margin: 0;
+}
+.banner-title p.ban{
+    background: rgba(255,255,255,0.3);
+    font-size: larger;
+    margin: 0;
+    color: black;
+    font-weight: bold;
+   
+}
+.lightBlack{
+    border: 1px solid black;
+}
+#order-heading{
+    text-align: center;
+    font-weight: bolder;
+    color: rgb(154, 26, 26);
+}
+#order-heading::after{
+    background: orange;
+    content: "";
+    display: block;
+    /* now it behaves like a div */
+    width: 100px;
+    height: 3px;
+    margin: 20px auto;
+}
+#order{
+    background: url('aaron-burden-xG8IQMqMITM-unsplash.jpg') no-repeat 0 0;
+    background-size: cover;
+    color: black
+}
+form{
+    font-weight: bold;
+background-color: rgba(255,255,255,0.3);
+}
+.red{
+    border: 2px solid red;
+}
+.blue{
+    border: 2px solid rgb(117, 201, 227);
+}
+.green{
+    border: 2px solid rgb(19, 241, 19);
+}
+#table{
+    background: url('leonid-antsiferov-A51S7lxILhA-unsplash.jpg') no-repeat 0 0;
+    background-size: cover;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+#table-heading{
+    text-align: center;
+    font-weight: bolder;
+}
+#table-heading::after{
+    background-color: whitesmoke;
+    content: "";
+    width: 100px;
+    height: 3px;
+    margin: 20px auto;
+    display: block;
+}
+#bill{
+    text-align: center;
+    background-color: black;
+    color: white;
+    border: 5px solid white;
+}
+#offer{
+    text-align: center;
+    color: darkgreen;
+    margin-top: 2px;
+    padding-top: 2px;
+    font-weight: bold;
+}
+#billGenerator {
+    margin-top: 2px;
+    border: 2px solid black;
+    background-color: black;
+    color: white;
+    display: none;
+}
+#displayBill{
+    border: 3px solid brown;
+    margin-top: 5px;
+    margin-bottom: 2px;
+}
+#warning{
+    text-align: center;
+    color: whitesmoke;
+    margin-top: 2px;
+    padding-top: 2px;
+    font-weight: bold;   
+}
+#forBill{
+    text-decoration: underline;
+    margin-bottom: 5px;
+    padding: 5px;
+}
